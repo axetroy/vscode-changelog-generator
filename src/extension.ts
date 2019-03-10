@@ -48,8 +48,8 @@ export function activate(context: VSCODE.ExtensionContext) {
     const cli = path.join(
       context.extensionPath,
       "node_modules",
-      ".bin",
-      "conventional-changelog"
+      "conventional-changelog-cli",
+      "cli",
     );
 
     const type = config.type;
