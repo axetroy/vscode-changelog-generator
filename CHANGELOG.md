@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/axetroy/vscode-changelog-generator/compare/v0.2.1...v0.3.0) (2019-03-10)
+
+
+### Features
+
+* exec cli with build-in node. support window. close [#1](https://github.com/axetroy/vscode-changelog-generator/issues/1) ([12021d5](https://github.com/axetroy/vscode-changelog-generator/commit/12021d5))
+
+
+
 ## [0.2.1](https://github.com/axetroy/vscode-changelog-generator/compare/v0.2.0...v0.2.1) (2019-03-10)
 
 
