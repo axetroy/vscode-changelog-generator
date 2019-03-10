@@ -49,7 +49,7 @@ export function activate(context: VSCODE.ExtensionContext) {
       context.extensionPath,
       "node_modules",
       "conventional-changelog-cli",
-      "cli",
+      "cli.js"
     );
 
     const type = config.type;
@@ -57,6 +57,7 @@ export function activate(context: VSCODE.ExtensionContext) {
     const isAppend = type === Type.appendToChangelog;
 
     const args = [
+      cli,
       "--preset",
       config.preset,
       "--release-count",
@@ -67,7 +68,7 @@ export function activate(context: VSCODE.ExtensionContext) {
         : [])
     ];
 
-    const { stdout: changelog } = await execa(cli, args, {
+    const { stdout: changelog } = await execa(process.execPath, args, {
       cwd: workspacePath
     });
 
