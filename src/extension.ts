@@ -9,7 +9,7 @@ enum Type {
   appendToChangelog = "append to CHANGELOG.md"
 }
 
-interface Config {
+interface IConfig {
   type: string;
   preset: string;
   releaseCount: number;
@@ -36,7 +36,7 @@ export function activate(context: VSCODE.ExtensionContext) {
     return;
   }
 
-  async function generate(config: Config) {
+  async function generate(config: IConfig) {
     const workspaceFolder = await prickWorkspace();
 
     if (!workspaceFolder) {
