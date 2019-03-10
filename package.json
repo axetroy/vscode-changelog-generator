@@ -2,7 +2,7 @@
   "name": "vscode-changelog-generator",
   "displayName": "changelog-generator",
   "description": "An extension to generate changelog.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "axetroy",
   "engines": {
     "vscode": "^1.21.0"
@@ -78,7 +78,7 @@
         }
       ]
     },
-    "configuration":{
+    "configuration": {
       "title": "CHANGELOG",
       "properties": {
         "changelog.preset": {
