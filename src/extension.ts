@@ -107,40 +107,50 @@ export function activate(context: VSCODE.ExtensionContext) {
     });
   }
 
-  vs.commands.registerCommand("changelog.generate", () => {
-    return handler(null);
-  });
-
-  vs.commands.registerCommand("changelog.generateFromLastVersion", () => {
-    return handler(1);
-  });
-
-  vs.commands.registerCommand("changelog.generateFromLastTwoVersion", () => {
-    return handler(2);
-  });
-
-  vs.commands.registerCommand(
-    "changelog.generateFromLastNVersion",
-    async () => {
-      const releaseCount = await vs.window.showInputBox({
-        placeHolder: "",
-        validateInput(input) {
-          if (/^\d+$/.test(input.trim())) {
-            return null;
-          }
-          return "Please enter an interger number.";
-        }
-      });
-      if (releaseCount === undefined) {
-        return;
-      }
-      return handler(parseInt(releaseCount, 10));
-    }
+  context.subscriptions.push(
+    vs.commands.registerCommand("changelog.generate", () => {
+      return handler(null);
+    })
   );
 
-  vs.commands.registerCommand("changelog.generateAll", () => {
-    return handler(0);
-  });
+  context.subscriptions.push(
+    vs.commands.registerCommand("changelog.generateFromLastVersion", () => {
+      return handler(1);
+    })
+  );
+
+  context.subscriptions.push(
+    vs.commands.registerCommand("changelog.generateFromLastTwoVersion", () => {
+      return handler(2);
+    })
+  );
+
+  context.subscriptions.push(
+    vs.commands.registerCommand(
+      "changelog.generateFromLastNVersion",
+      async () => {
+        const releaseCount = await vs.window.showInputBox({
+          placeHolder: "",
+          validateInput(input) {
+            if (/^\d+$/.test(input.trim())) {
+              return null;
+            }
+            return "Please enter an interger number.";
+          }
+        });
+        if (releaseCount === undefined) {
+          return;
+        }
+        return handler(parseInt(releaseCount, 10));
+      }
+    )
+  );
+
+  context.subscriptions.push(
+    vs.commands.registerCommand("changelog.generateAll", () => {
+      return handler(0);
+    })
+  );
 }
 
 // this method is called when your extension is deactivated
