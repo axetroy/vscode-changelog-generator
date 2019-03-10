@@ -1,0 +1,14 @@
+{
+  "ext.config.preset": "Preset of [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)",
+  "ext.config.type": "How to generate a change log",
+  "ext.config.type-1": "Generage changelog in new document",
+  "ext.config.type-2": "Create/Overwrite current changelog file",
+  "ext.config.type-3": "Append changes to current changelog file",
+  "ext.config.release-count": "How many releases to be generated from the latest. If 0, the whole changelog will be regenerated. [Docs](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-core/README.md)",
+  "ext.config.changelogFileName": "Changelog filename",
+  "cmd.generate.title": "Generate changelog",
+  "cmd.generateFromLastVersion.title": "Generate changelog from last 1 version",
+  "cmd.generateFromLastTwoVersion.title": "Generate changelog from last 2 version",
+  "cmd.generateFromLastNVersion.title": "Generate changelog from last N version",
+  "cmd.generateAll.title": "Generate changelog from beginning"
+}

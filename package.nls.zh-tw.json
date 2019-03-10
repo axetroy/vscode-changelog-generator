@@ -1,0 +1,14 @@
+{
+  "ext.config.preset": "[conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) 的預設",
+  "ext.config.type": "以何種方式生成更新日誌",
+  "ext.config.type-1": "在新的文檔中創建更新日誌",
+  "ext.config.type-2": "創建/覆蓋 當前的更新日誌文件",
+  "ext.config.type-3": "追加變更到當前的更新日誌",
+  "ext.config.release-count": "從最新版本生成多少個版本。如果為0，則將重新生成整個更改日誌。[Docs](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-core/README.md)",
+  "ext.config.changelogFileName": "更新日誌的文件名",
+  "cmd.generate.title": "生成更新日誌",
+  "cmd.generateFromLastVersion.title": "生成前 1 個版本的更新日誌",
+  "cmd.generateFromLastTwoVersion.title": "生成前 2 個版本的更新日誌",
+  "cmd.generateFromLastNVersion.title": "生成前 N 個版本的更新日誌",
+  "cmd.generateAll.title": "生成完整的更新日誌"
+}

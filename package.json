@@ -35,27 +35,27 @@
     "commands": [
       {
         "command": "changelog.generate",
-        "title": "Generate changelog",
+        "title": "%cmd.generate.title%",
         "category": "CHANGELOG"
       },
       {
         "command": "changelog.generateFromLastVersion",
-        "title": "Generate changelog from last 1 version",
+        "title": "%cmd.generateFromLastVersion.title%",
         "category": "CHANGELOG"
       },
       {
         "command": "changelog.generateFromLastTwoVersion",
-        "title": "Generate changelog from last 2 version",
+        "title": "%cmd.generateFromLastTwoVersion.title%",
         "category": "CHANGELOG"
       },
       {
         "command": "changelog.generateFromLastNVersion",
-        "title": "Generate changelog from last N version",
+        "title": "%cmd.generateFromLastNVersion.title%",
         "category": "CHANGELOG"
       },
       {
         "command": "changelog.generateAll",
-        "title": "Generate changelog from beginning",
+        "title": "%cmd.generateAll.title%",
         "category": "CHANGELOG"
       }
     ],
@@ -95,7 +95,7 @@
             "jscs",
             "jshint"
           ],
-          "description": "Preset of conventional-changelog"
+          "markdownDescription": "%ext.config.preset%"
         },
         "changelog.type": {
           "type": "string",
@@ -105,17 +105,22 @@
             "overwrite CHANGELOG.md",
             "append to CHANGELOG.md"
           ],
-          "description": "How to generate a change log"
+          "markdownEnumDescriptions": [
+            "%ext.config.type-1%",
+            "%ext.config.type-2%",
+            "%ext.config.type-3%"
+          ],
+          "markdownDescription": "%ext.config.type%"
         },
         "changelog.release-count": {
           "type": "number",
           "default": 0,
-          "description": "How many releases to be generated from the latest. If 0, the whole changelog will be regenerated and the outfile will be overwritten"
+          "markdownDescription": "%ext.config.release-count%"
         },
         "changelog.changelogFileName": {
           "type": "string",
           "default": "CHANGELOG.md",
-          "description": "changelog file name."
+          "markdownDescription": "%ext.config.changelogFileName%"
         }
       }
     }
