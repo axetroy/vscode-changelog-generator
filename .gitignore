@@ -1,0 +1,8 @@
+out
+node_modules
+.vscode-test/
+*.vsix
+*.lock
+package-lock.json
+*.log
+.DS_Store
