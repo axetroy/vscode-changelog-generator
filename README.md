@@ -11,6 +11,16 @@ An extension to generate changelog.
 - Generate `CHANGELOG.md` automatically.
 - Append this version changes to `CHANGELOG.md`.
 
+## Requirement
+
+- NodeJS
+
+## Support
+
+- [x] OSX
+- [x] Linux
+- [ ] Window
+
 ## [CHANGELOG](https://github.com/axetroy/vscode-changelog-generator/blob/master/CHANGELOG.md)
 
 ## Screenshot
