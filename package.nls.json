@@ -6,6 +6,7 @@
   "ext.config.type-3": "Append changes to current changelog file",
   "ext.config.release-count": "How many releases to be generated from the latest. If 0, the whole changelog will be regenerated. [Docs](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-core/README.md)",
   "ext.config.changelogFileName": "Changelog filename",
+  "ext.config.outputUnreleased": "Output unreleased changelog",
   "cmd.generate.title": "Generate changelog",
   "cmd.generateFromLastVersion.title": "Generate changelog from last 1 version",
   "cmd.generateFromLastTwoVersion.title": "Generate changelog from last 2 version",

@@ -13,6 +13,7 @@ interface IConfig {
   type: string;
   preset: string;
   releaseCount: number;
+  outputUnreleased: boolean;
   changelogFileName: string;
 }
 
@@ -65,7 +66,8 @@ export function activate(context: VSCODE.ExtensionContext) {
       isAppend ? "--append" : "",
       ...(isOverwriteChangelog || isAppend
         ? ["--outfile", config.changelogFileName]
-        : [])
+        : []),
+      config.outputUnreleased ? "--output-unreleased" : ""
     ];
 
     const { stdout: changelog } = await execa(process.execPath, args, {
@@ -95,6 +97,7 @@ export function activate(context: VSCODE.ExtensionContext) {
     const type = config.get<string>("type") || "";
     const preset = config.get<string>("preset") || "";
     const changelogFileName = config.get<string>("changelogFileName") || "";
+    const outputUnreleased = config.get<boolean>("outputUnreleased") || false;
 
     if (releaseCount === null) {
       releaseCount = config.get<number>("release-count") || 0;
@@ -104,7 +107,8 @@ export function activate(context: VSCODE.ExtensionContext) {
       type,
       preset,
       releaseCount,
-      changelogFileName
+      changelogFileName,
+      outputUnreleased
     });
   }
 

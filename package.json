@@ -121,6 +121,11 @@
           "type": "string",
           "default": "CHANGELOG.md",
           "markdownDescription": "%ext.config.changelogFileName%"
+        },
+        "changelog.outputUnreleased": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "%ext.config.outputUnreleased%"
         }
       }
     }
