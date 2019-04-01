@@ -2,6 +2,7 @@
 import VSCODE = require("vscode");
 import * as path from "path";
 import * as execa from "execa";
+import { init, localize } from "vscode-nls-i18n"
 
 enum Type {
   newDocument = "new document",
@@ -19,6 +20,7 @@ interface IConfig {
 
 export function activate(context: VSCODE.ExtensionContext) {
   const vs: typeof VSCODE = require("vscode");
+  init(context)
 
   async function prickWorkspace(): Promise<VSCODE.WorkspaceFolder | undefined> {
     const workspaces = vs.workspace.workspaceFolders;
@@ -30,7 +32,7 @@ export function activate(context: VSCODE.ExtensionContext) {
     }
     if (workspaces.length > 1) {
       return vs.window.showWorkspaceFolderPick({
-        placeHolder: "select a workspace to generate changelog"
+        placeHolder: localize("placeholder.select.workspace")
       });
     }
 
@@ -140,7 +142,7 @@ export function activate(context: VSCODE.ExtensionContext) {
             if (/^\d+$/.test(input.trim())) {
               return null;
             }
-            return "Please enter an interger number.";
+            return localize("validator.interger");
           }
         });
         if (releaseCount === undefined) {

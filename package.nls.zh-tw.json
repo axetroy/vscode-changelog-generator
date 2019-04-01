@@ -11,5 +11,7 @@
   "cmd.generateFromLastVersion.title": "生成前 1 個版本的變更日誌",
   "cmd.generateFromLastTwoVersion.title": "生成前 2 個版本的變更日誌",
   "cmd.generateFromLastNVersion.title": "生成前 N 個版本的變更日誌",
-  "cmd.generateAll.title": "生成完整的變更日誌"
+  "cmd.generateAll.title": "生成完整的變更日誌",
+  "placeholder.select.workspace": "選擇工作空間以生成變更日誌",
+  "validator.interger": "請輸入一個整數"
 }
