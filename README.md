@@ -1,5 +1,7 @@
 # vscode-changelog-generator
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/axetroy/vscode-changelog-generator.svg)](https://greenkeeper.io/)
+
 An extension to generate changelog.
 
 ## Feature
