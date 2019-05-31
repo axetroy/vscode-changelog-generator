@@ -60,6 +60,33 @@
       }
     ],
     "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceFilename =~ /^changelog(.md)?$/i",
+          "command": "changelog.generate",
+          "group": "changelog"
+        },
+        {
+          "when": "resourceFilename =~ /^changelog(.md)?$/i",
+          "command": "changelog.generateFromLastVersion",
+          "group": "changelog"
+        },
+        {
+          "when": "resourceFilename =~ /^changelog(.md)?$/i",
+          "command": "changelog.generateFromLastTwoVersion",
+          "group": "changelog"
+        },
+        {
+          "when": "resourceFilename =~ /^changelog(.md)?$/i",
+          "command": "changelog.generateFromLastNVersion",
+          "group": "changelog"
+        },
+        {
+          "when": "resourceFilename =~ /^changelog(.md)?$/i",
+          "command": "changelog.generateAll",
+          "group": "changelog"
+        }
+      ],
       "commandPalette": [
         {
           "command": "changelog.generate"

@@ -2,7 +2,7 @@
 import VSCODE = require("vscode");
 import * as path from "path";
 import * as execa from "execa";
-import { init, localize } from "vscode-nls-i18n"
+import { init, localize } from "vscode-nls-i18n";
 
 enum Type {
   newDocument = "new document",
@@ -20,7 +20,7 @@ interface IConfig {
 
 export function activate(context: VSCODE.ExtensionContext) {
   const vs: typeof VSCODE = require("vscode");
-  init(context)
+  init(context);
 
   async function prickWorkspace(): Promise<VSCODE.WorkspaceFolder | undefined> {
     const workspaces = vs.workspace.workspaceFolders;
@@ -93,12 +93,14 @@ export function activate(context: VSCODE.ExtensionContext) {
     }
   }
 
-  async function handler(releaseCount: number | null) {
+  async function handler(releaseCount: number | null, uri?: VSCODE.Uri) {
     const config = vs.workspace.getConfiguration("changelog");
 
     const type = config.get<string>("type") || "";
     const preset = config.get<string>("preset") || "";
-    const changelogFileName = config.get<string>("changelogFileName") || "";
+    const changelogFileName = uri
+      ? path.basename(uri.fsPath)
+      : config.get<string>("changelogFileName") || "";
     const outputUnreleased = config.get<boolean>("outputUnreleased") || false;
 
     if (releaseCount === null) {
@@ -115,27 +117,33 @@ export function activate(context: VSCODE.ExtensionContext) {
   }
 
   context.subscriptions.push(
-    vs.commands.registerCommand("changelog.generate", () => {
-      return handler(null);
-    })
-  );
-
-  context.subscriptions.push(
-    vs.commands.registerCommand("changelog.generateFromLastVersion", () => {
-      return handler(1);
-    })
-  );
-
-  context.subscriptions.push(
-    vs.commands.registerCommand("changelog.generateFromLastTwoVersion", () => {
-      return handler(2);
+    vs.commands.registerCommand("changelog.generate", (uri: VSCODE.Uri) => {
+      return handler(null, uri);
     })
   );
 
   context.subscriptions.push(
     vs.commands.registerCommand(
+      "changelog.generateFromLastVersion",
+      (uri: VSCODE.Uri) => {
+        return handler(1, uri);
+      }
+    )
+  );
+
+  context.subscriptions.push(
+    vs.commands.registerCommand(
+      "changelog.generateFromLastTwoVersion",
+      (uri: VSCODE.Uri) => {
+        return handler(2, uri);
+      }
+    )
+  );
+
+  context.subscriptions.push(
+    vs.commands.registerCommand(
       "changelog.generateFromLastNVersion",
-      async () => {
+      async (uri: VSCODE.Uri) => {
         const releaseCount = await vs.window.showInputBox({
           placeHolder: "",
           validateInput(input) {
@@ -148,19 +156,14 @@ export function activate(context: VSCODE.ExtensionContext) {
         if (releaseCount === undefined) {
           return;
         }
-        return handler(parseInt(releaseCount, 10));
+        return handler(parseInt(releaseCount, 10), uri);
       }
     )
   );
 
   context.subscriptions.push(
-    vs.commands.registerCommand("changelog.generateAll", () => {
-      return handler(0);
+    vs.commands.registerCommand("changelog.generateAll", (uri: VSCODE.Uri) => {
+      return handler(0, uri);
     })
   );
-}
-
-// this method is called when your extension is deactivated
-export function deactivate(context: VSCODE.ExtensionContext) {
-  //
 }
