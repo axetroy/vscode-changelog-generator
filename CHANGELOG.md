@@ -1,3 +1,23 @@
+# [0.4.0](https://github.com/axetroy/vscode-changelog-generator/compare/v0.3.1...v0.4.0) (2019-05-31)
+
+
+### Features
+
+* add context for changelog.md ([976b7c3](https://github.com/axetroy/vscode-changelog-generator/commit/976b7c3))
+* build with @zeit/ncc ([cc76b45](https://github.com/axetroy/vscode-changelog-generator/commit/cc76b45))
+
+
+
+## [0.3.1](https://github.com/axetroy/vscode-changelog-generator/compare/v0.3.0...v0.3.1) (2019-04-01)
+
+
+### Features
+
+* support outputUnreleased options ([bbab14f](https://github.com/axetroy/vscode-changelog-generator/commit/bbab14f))
+* update i18n ([ef82d5b](https://github.com/axetroy/vscode-changelog-generator/commit/ef82d5b))
+
+
+
 # [0.3.0](https://github.com/axetroy/vscode-changelog-generator/compare/v0.2.1...v0.3.0) (2019-03-10)
 
 
@@ -35,6 +55,5 @@
 
 
 # 0.1.0 (2019-03-10)
-
 
 
