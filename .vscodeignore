@@ -8,3 +8,4 @@ tsconfig.json
 tslint.json
 *.gif
 *.log
+node_modules
