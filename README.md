@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.com/axetroy/vscode-changelog-generator.svg?branch=master)](https://travis-ci.com/axetroy/vscode-changelog-generator)
+[![Version](https://vsmarketplacebadge.apphb.com/version/axetroy.vscode-changelog-generator.svg)](https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-changelog-generator)
+[![Downloads](https://vsmarketplacebadge.apphb.com/downloads/axetroy.vscode-changelog-generator.svg)](https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-changelog-generator)
+
 # vscode-changelog-generator
 
 An extension to generate changelog.
