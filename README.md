@@ -15,11 +15,11 @@ An extension to generate changelog.
 - Generate `CHANGELOG.md` automatically.
 - Append this version changes to `CHANGELOG.md`.
 
-## [CHANGELOG](https://github.com/axetroy/vscode-changelog-generator/blob/master/CHANGELOG.md)
+## [CHANGELOG](CHANGELOG.md)
 
 ## Screenshot
 
-![Screenshot](https://github.com/axetroy/vscode-changelog-generator/raw/master/screenshot.gif)
+![Screenshot](screenshot.gif)
 
 ## Contributors
 
@@ -33,4 +33,4 @@ An extension to generate changelog.
 
 ## License
 
-The [MIT License](https://github.com/axetroy/vscode-changelog-generator/blob/master/LICENSE)
+The [MIT License](LICENSE)
