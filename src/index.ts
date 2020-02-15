@@ -73,11 +73,11 @@ export function activate(context: VSCODE.ExtensionContext) {
         title: localize("info.generating")
       },
       async () => {
-        const { stdout: changelog } = await execa(process.execPath, args, {
+        const { stdout } = await execa(process.execPath, args, {
           cwd: workspacePath
         });
 
-        return changelog;
+        return stdout;
       }
     );
 
@@ -181,9 +181,9 @@ export function activate(context: VSCODE.ExtensionContext) {
       });
 
       await generate({
-        preset: preset,
-        releaseCount: releaseCount,
-        outputUnreleased: outputUnreleased
+        preset,
+        releaseCount,
+        outputUnreleased
       });
     })
   );
