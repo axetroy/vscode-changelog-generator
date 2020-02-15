@@ -42,15 +42,7 @@ export function activate(context: VSCODE.ExtensionContext) {
     return;
   }
 
-  async function generate(config: IConfig) {
-    const workspaceFolder = await prickWorkspace();
-
-    if (!workspaceFolder) {
-      return;
-    }
-
-    const workspacePath = workspaceFolder.uri.fsPath;
-
+  async function generate(cwd: string, config: IConfig) {
     const cli = path.join(
       context.extensionPath,
       "node_modules",
@@ -74,7 +66,7 @@ export function activate(context: VSCODE.ExtensionContext) {
       },
       async () => {
         const { stdout } = await execa(process.execPath, args, {
-          cwd: workspacePath
+          cwd
         });
 
         return stdout;
@@ -91,6 +83,14 @@ export function activate(context: VSCODE.ExtensionContext) {
 
   context.subscriptions.push(
     vs.commands.registerCommand("changelog.generate", async () => {
+      const workspaceFolder = await prickWorkspace();
+
+      if (!workspaceFolder) {
+        return;
+      }
+
+      const workspacePath = workspaceFolder.uri.fsPath;
+
       let currentStep = 1;
       const totalSteps = 3;
 
@@ -180,7 +180,7 @@ export function activate(context: VSCODE.ExtensionContext) {
         input.onDidHide(() => input.dispose());
       });
 
-      await generate({
+      await generate(workspacePath, {
         preset,
         releaseCount,
         outputUnreleased
