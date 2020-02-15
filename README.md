@@ -1,35 +1,18 @@
-[![Build Status](https://travis-ci.com/axetroy/vscode-changelog-generator.svg?branch=master)](https://travis-ci.com/axetroy/vscode-changelog-generator)
-[![Version](https://vsmarketplacebadge.apphb.com/version/axetroy.vscode-changelog-generator.svg)](https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-changelog-generator)
-[![Downloads](https://vsmarketplacebadge.apphb.com/downloads/axetroy.vscode-changelog-generator.svg)](https://marketplace.visualstudio.com/items?itemName=axetroy.vscode-changelog-generator)
+# Visual Studio Code extension to generate changelog
 
-# vscode-changelog-generator
-
-An extension to generate changelog.
-
-## Feature
-
-- Generate changelog from beginning.
-- Generate changelog from last 1 version.
-- Generate changelog from last 2 version.
-- Generate changelog from last N version.
-- Generate `CHANGELOG.md` automatically.
-- Append this version changes to `CHANGELOG.md`.
-
-## [CHANGELOG](CHANGELOG.md)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axetroy/vscode-changelog-generator/build)
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/axetroy.vscode-changelog-generator)
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/axetroy.vscode-changelog-generator)
+![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/axetroy.vscode-changelog-generator)
+![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/axetroy.vscode-changelog-generator)
+![Visual Studio Marketplace Rating (Stars)](https://img.shields.io/visual-studio-marketplace/stars/axetroy.vscode-changelog-generator)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/axetroy/vscode-changelog-generator)
+![GitHub repo size](https://img.shields.io/github/repo-size/axetroy/vscode-changelog-generator)
+![GitHub](https://img.shields.io/github/license/axetroy/vscode-changelog-generator)
 
 ## Screenshot
 
 ![Screenshot](screenshot.gif)
-
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-
-| [<img src="https://avatars1.githubusercontent.com/u/9758711?v=3" width="100px;"/><br /><sub>Axetroy</sub>](http://axetroy.github.io)<br />[💻](https://github.com/axetroy/vscode-changelog-generator/commits?author=axetroy) 🔌 [⚠️](https://github.com/axetroy/vscode-changelog-generator/commits?author=axetroy) [🐛](https://github.com/axetroy/vscode-changelog-generator/issues?q=author%3Aaxetroy) 🎨 |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
 

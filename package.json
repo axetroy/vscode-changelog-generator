@@ -52,7 +52,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "npm run lint && npm run clean && npx @zeit/ncc build src/index.ts -o ./dist -e vscode -m && npm run clean && npx move-cli ./dist ./out",
+    "compile": "tsc -p ./",
     "clean": "npx rimraf ./out",
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",

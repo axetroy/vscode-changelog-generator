@@ -8,3 +8,5 @@ tsconfig.json
 tslint.json
 *.gif
 *.log
+renovate.json
+.github
