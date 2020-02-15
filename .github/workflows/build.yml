@@ -27,10 +27,9 @@ jobs:
         run: |
           yarn
 
-      - name: Check code format
-        if: runner.os != 'windows'
+      - name: Lint
         run: |
-          npm run check
+          npm run lint
 
       - name: Compile
         run: |
