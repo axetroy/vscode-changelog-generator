@@ -1,26 +1,29 @@
-"use strict";
 import VSCODE = require("vscode");
 import * as path from "path";
 import * as execa from "execa";
 import { init, localize } from "vscode-nls-i18n";
 
-enum Type {
-  newDocument = "new document",
-  overwriteChangelog = "overwrite CHANGELOG.md",
-  appendToChangelog = "append to CHANGELOG.md"
+enum Preset {
+  Angular = "angular",
+  Atom = "atom",
+  CodeMirror = "codemirror",
+  Ember = "ember",
+  Eslint = "eslint",
+  Express = "express",
+  JQuery = "jquery",
+  JsCs = "jscs",
+  JsHint = "jshint"
 }
 
-interface IConfig {
-  type: string;
-  preset: string;
+type IConfig = {
+  preset: Preset;
   releaseCount: number;
   outputUnreleased: boolean;
-  changelogFileName: string;
-}
+};
 
 export function activate(context: VSCODE.ExtensionContext) {
   const vs: typeof VSCODE = require("vscode");
-  init(context);
+  init(context.extensionPath);
 
   async function prickWorkspace(): Promise<VSCODE.WorkspaceFolder | undefined> {
     const workspaces = vs.workspace.workspaceFolders;
@@ -55,115 +58,133 @@ export function activate(context: VSCODE.ExtensionContext) {
       "cli.js"
     );
 
-    const type = config.type;
-    const isOverwriteChangelog = type === Type.overwriteChangelog;
-    const isAppend = type === Type.appendToChangelog;
-
     const args = [
       cli,
       "--preset",
       config.preset,
       "--release-count",
       config.releaseCount + "",
-      isAppend ? "--append" : "",
-      ...(isOverwriteChangelog || isAppend
-        ? ["--outfile", config.changelogFileName]
-        : []),
       config.outputUnreleased ? "--output-unreleased" : ""
     ];
 
-    const { stdout: changelog } = await execa(process.execPath, args, {
-      cwd: workspacePath
-    });
-
-    switch (type) {
-      case Type.newDocument:
-        const document = await vs.workspace.openTextDocument({
-          language: "markdown",
-          content: changelog
+    const changelog = await vs.window.withProgress(
+      {
+        location: vs.ProgressLocation.Notification,
+        title: localize("info.generating")
+      },
+      async () => {
+        const { stdout: changelog } = await execa(process.execPath, args, {
+          cwd: workspacePath
         });
-        vs.window.showTextDocument(document);
-        break;
-      case Type.overwriteChangelog:
-        break;
-      case Type.appendToChangelog:
-        break;
-      default:
-        break;
-    }
-  }
 
-  async function handler(releaseCount: number | null, uri?: VSCODE.Uri) {
-    const config = vs.workspace.getConfiguration("changelog");
+        return changelog;
+      }
+    );
 
-    const type = config.get<string>("type") || "";
-    const preset = config.get<string>("preset") || "";
-    const changelogFileName = uri
-      ? path.basename(uri.fsPath)
-      : config.get<string>("changelogFileName") || "";
-    const outputUnreleased = config.get<boolean>("outputUnreleased") || false;
-
-    if (releaseCount === null) {
-      releaseCount = config.get<number>("release-count") || 0;
-    }
-
-    await generate({
-      type,
-      preset,
-      releaseCount,
-      changelogFileName,
-      outputUnreleased
+    const document = await vs.workspace.openTextDocument({
+      language: "markdown",
+      content: changelog
     });
+
+    vs.window.showTextDocument(document);
   }
 
   context.subscriptions.push(
-    vs.commands.registerCommand("changelog.generate", (uri: VSCODE.Uri) => {
-      return handler(null, uri);
-    })
-  );
+    vs.commands.registerCommand("changelog.generate", async () => {
+      let currentStep = 1;
+      const totalSteps = 3;
 
-  context.subscriptions.push(
-    vs.commands.registerCommand(
-      "changelog.generateFromLastVersion",
-      (uri: VSCODE.Uri) => {
-        return handler(1, uri);
-      }
-    )
-  );
+      const preset: Preset = await new Promise(resolve => {
+        const quickPick = vs.window.createQuickPick();
+        quickPick.title = localize("info.select_preset");
+        quickPick.step = currentStep;
+        quickPick.totalSteps = totalSteps;
 
-  context.subscriptions.push(
-    vs.commands.registerCommand(
-      "changelog.generateFromLastTwoVersion",
-      (uri: VSCODE.Uri) => {
-        return handler(2, uri);
-      }
-    )
-  );
+        quickPick.items = [
+          Preset.Angular,
+          Preset.Atom,
+          Preset.CodeMirror,
+          Preset.Ember,
+          Preset.Eslint,
+          Preset.Express,
+          Preset.JQuery,
+          Preset.JsCs,
+          Preset.JsHint
+        ].map(v => {
+          return {
+            label: v
+          };
+        });
 
-  context.subscriptions.push(
-    vs.commands.registerCommand(
-      "changelog.generateFromLastNVersion",
-      async (uri: VSCODE.Uri) => {
-        const releaseCount = await vs.window.showInputBox({
-          placeHolder: "",
-          validateInput(input) {
-            if (/^\d+$/.test(input.trim())) {
-              return null;
-            }
-            return localize("validator.interger");
+        quickPick.onDidChangeSelection(selection => {
+          currentStep = quickPick.step = (quickPick.step as number) + 1;
+          quickPick.hide();
+
+          resolve(selection[0].label as Preset);
+        });
+
+        quickPick.onDidHide(() => quickPick.dispose());
+
+        quickPick.show();
+      });
+
+      const outputUnreleased: boolean = await new Promise(resolve => {
+        const quickPick = vs.window.createQuickPick();
+        quickPick.title = localize("info.output_unreleased");
+        quickPick.step = currentStep;
+        quickPick.totalSteps = totalSteps;
+
+        quickPick.items = ["Yes", "No"].map(v => {
+          return {
+            label: v
+          };
+        });
+
+        quickPick.onDidChangeSelection(selection => {
+          currentStep = quickPick.step = (quickPick.step as number) + 1;
+          quickPick.hide();
+
+          resolve(selection[0].label === "Yes" ? true : false);
+        });
+
+        quickPick.onDidHide(() => quickPick.dispose());
+
+        quickPick.show();
+      });
+
+      const releaseCount: number = await new Promise(resolve => {
+        const input = vs.window.createInputBox();
+        input.title = localize("info.release_count");
+        input.step = currentStep;
+        input.totalSteps = totalSteps;
+        input.value = "0";
+        input.show();
+        input.prompt = localize("info.release_count_meta");
+
+        input.onDidChangeValue(() => {
+          input.validationMessage = undefined;
+        });
+
+        input.onDidAccept(() => {
+          const val = +input.value;
+
+          if (isNaN(val)) {
+            input.validationMessage = localize("validator.interger");
+            return;
           }
-        });
-        if (releaseCount === undefined) {
-          return;
-        }
-        return handler(parseInt(releaseCount, 10), uri);
-      }
-    )
-  );
 
-  context.subscriptions.push(
-    vs.commands.registerCommand("changelog.generateAll", (uri: VSCODE.Uri) => {
-      return handler(0, uri);
+          input.hide();
+          resolve(+input.value);
+        });
+
+        input.onDidHide(() => input.dispose());
+      });
+
+      await generate({
+        preset: preset,
+        releaseCount: releaseCount,
+        outputUnreleased: outputUnreleased
+      });
     })
   );
 }

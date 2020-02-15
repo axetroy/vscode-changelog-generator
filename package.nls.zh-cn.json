@@ -1,17 +1,10 @@
 {
-  "ext.config.preset": "[conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) 的预设",
-  "ext.config.type": "以何种方式生成变更日志",
-  "ext.config.type-1": "在新的文档中创建变更日志",
-  "ext.config.type-2": "创建/覆盖 当前的变更日志文件",
-  "ext.config.type-3": "追加变更到当前的变更日志",
-  "ext.config.release-count": "从最新版本生成多少个版本。 如果为0，则将重新生成整个更改日志。[Docs](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-core/README.md)",
-  "ext.config.changelogFileName": "变更日志的文件名",
-  "ext.config.outputUnreleased": "是否生成未发布的变更日志",
   "cmd.generate.title": "生成变更日志",
-  "cmd.generateFromLastVersion.title": "生成前 1 个版本的变更日志",
-  "cmd.generateFromLastTwoVersion.title": "生成前 2 个版本的变更日志",
-  "cmd.generateFromLastNVersion.title": "生成前 N 个版本的变更日志",
-  "cmd.generateAll.title": "生成完整的变更日志",
+  "info.select_preset": "请选择一种预设风格",
+  "info.output_unreleased": "是否包含未发布的变更日志？",
+  "info.release_count": "你要生成多少个版本的变更日志？",
+  "info.release_count_meta": "如果输入 ‘0‘， 则生成全部版本。",
+  "info.generating": "正在生成变更日志...",
   "placeholder.select.workspace": "选择工作空间以生成变更日志",
   "validator.interger": "请输入一个整数"
 }

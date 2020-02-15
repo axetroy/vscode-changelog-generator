@@ -5,7 +5,7 @@
   "version": "0.4.1",
   "publisher": "axetroy",
   "engines": {
-    "vscode": "^1.21.0"
+    "vscode": "^1.42.0"
   },
   "repository": {
     "type": "git",
@@ -25,37 +25,13 @@
   "icon": "resources/icon.png",
   "main": "./out/index",
   "activationEvents": [
-    "onCommand:changelog.generate",
-    "onCommand:changelog.generateFromLastVersion",
-    "onCommand:changelog.generateFromLastTwoVersion",
-    "onCommand:changelog.generateFromLastNVersion",
-    "onCommand:changelog.generateAll"
+    "onCommand:changelog.generate"
   ],
   "contributes": {
     "commands": [
       {
         "command": "changelog.generate",
         "title": "%cmd.generate.title%",
-        "category": "CHANGELOG"
-      },
-      {
-        "command": "changelog.generateFromLastVersion",
-        "title": "%cmd.generateFromLastVersion.title%",
-        "category": "CHANGELOG"
-      },
-      {
-        "command": "changelog.generateFromLastTwoVersion",
-        "title": "%cmd.generateFromLastTwoVersion.title%",
-        "category": "CHANGELOG"
-      },
-      {
-        "command": "changelog.generateFromLastNVersion",
-        "title": "%cmd.generateFromLastNVersion.title%",
-        "category": "CHANGELOG"
-      },
-      {
-        "command": "changelog.generateAll",
-        "title": "%cmd.generateAll.title%",
         "category": "CHANGELOG"
       }
     ],
@@ -65,96 +41,13 @@
           "when": "resourceFilename =~ /^changelog(.md)?$/i",
           "command": "changelog.generate",
           "group": "changelog"
-        },
-        {
-          "when": "resourceFilename =~ /^changelog(.md)?$/i",
-          "command": "changelog.generateFromLastVersion",
-          "group": "changelog"
-        },
-        {
-          "when": "resourceFilename =~ /^changelog(.md)?$/i",
-          "command": "changelog.generateFromLastTwoVersion",
-          "group": "changelog"
-        },
-        {
-          "when": "resourceFilename =~ /^changelog(.md)?$/i",
-          "command": "changelog.generateFromLastNVersion",
-          "group": "changelog"
-        },
-        {
-          "when": "resourceFilename =~ /^changelog(.md)?$/i",
-          "command": "changelog.generateAll",
-          "group": "changelog"
         }
       ],
       "commandPalette": [
         {
           "command": "changelog.generate"
-        },
-        {
-          "command": "changelog.generateFromLastVersion"
-        },
-        {
-          "command": "changelog.generateFromLastTwoVersion"
-        },
-        {
-          "command": "changelog.generateFromLastNVersion"
-        },
-        {
-          "command": "changelog.generateAll"
         }
       ]
-    },
-    "configuration": {
-      "title": "CHANGELOG",
-      "properties": {
-        "changelog.preset": {
-          "type": "string",
-          "default": "angular",
-          "enum": [
-            "angular",
-            "atom",
-            "codemirror",
-            "ember",
-            "eslint",
-            "express",
-            "jquery",
-            "jscs",
-            "jshint"
-          ],
-          "markdownDescription": "%ext.config.preset%"
-        },
-        "changelog.type": {
-          "type": "string",
-          "default": "new document",
-          "enum": [
-            "new document",
-            "overwrite CHANGELOG.md",
-            "append to CHANGELOG.md"
-          ],
-          "markdownEnumDescriptions": [
-            "%ext.config.type-1%",
-            "%ext.config.type-2%",
-            "%ext.config.type-3%"
-          ],
-          "markdownDescription": "%ext.config.type%"
-        },
-        "changelog.release-count": {
-          "type": "number",
-          "default": 0,
-          "markdownDescription": "%ext.config.release-count%"
-        },
-        "changelog.changelogFileName": {
-          "type": "string",
-          "default": "CHANGELOG.md",
-          "markdownDescription": "%ext.config.changelogFileName%"
-        },
-        "changelog.outputUnreleased": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "%ext.config.outputUnreleased%"
-        }
-      }
     }
   },
   "scripts": {
@@ -180,6 +73,6 @@
   "dependencies": {
     "conventional-changelog-cli": "^2.0.12",
     "execa": "^4.0.0",
-    "vscode-nls-i18n": "^0.1.1"
+    "vscode-nls-i18n": "^0.2.0"
   }
 }
