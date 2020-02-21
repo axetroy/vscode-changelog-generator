@@ -67,7 +67,7 @@
     "@types/node": "11.15.7",
     "tslint": "6.0.0",
     "tslint-config-prettier": "1.18.0",
-    "typescript": "3.7.5",
+    "typescript": "3.8.2",
     "vscode": "1.1.36"
   },
   "dependencies": {
