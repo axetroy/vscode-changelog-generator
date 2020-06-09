@@ -64,7 +64,7 @@
   "devDependencies": {
     "@types/execa": "0.9.0",
     "@types/mocha": "7.0.2",
-    "@types/node": "11.15.15",
+    "@types/node": "11.15.16",
     "tslint": "6.1.2",
     "tslint-config-prettier": "1.18.0",
     "typescript": "3.9.5",
