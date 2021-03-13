@@ -61,7 +61,7 @@ jobs:
 
       - name: publish to vscode market
         # require Azure DevOps Personal Access Token
-        run: npx vsce publish --packagePath ./package/vscode-changelog-generator.vsix --pat ${{ secrets.ADO_TOKEN }}
+        run: npx vsce publish --packagePath ./vscode-changelog-generator.vsix --pat ${{ secrets.ADO_TOKEN }}
 
       - uses: softprops/action-gh-release@v1
         name: publish to Github
@@ -70,5 +70,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           files: |
-            ./package/vscode-changelog-generator.vsix
+            ./vscode-changelog-generator.vsix
           draft: false
