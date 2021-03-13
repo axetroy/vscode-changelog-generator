@@ -62,7 +62,7 @@
     "publish": "npx vsce publish"
   },
   "devDependencies": {
-    "@types/execa": "^2.0.0",
+    "@types/execa": "2.0.0",
     "@types/mocha": "8.2.1",
     "@types/node": "14.14.34",
     "tslint": "6.1.3",
