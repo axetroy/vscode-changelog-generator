@@ -57,7 +57,7 @@ export function activate(context: VSCODE.ExtensionContext) {
       "--release-count",
       config.releaseCount + "",
       config.outputUnreleased ? "--output-unreleased" : ""
-    ];
+    ].filter(v=> v);
 
     const changelog = await vs.window.withProgress(
       {
@@ -65,11 +65,12 @@ export function activate(context: VSCODE.ExtensionContext) {
         title: localize("info.generating")
       },
       async () => {
-        const { stdout } = await execa(process.execPath, args, {
-          cwd
+        const { all } = await execa(process.execPath, args, {
+          cwd,
+          all: true
         });
 
-        return stdout;
+        return all;
       }
     );
 

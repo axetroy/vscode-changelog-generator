@@ -5,7 +5,7 @@
   "version": "1.0.1",
   "publisher": "axetroy",
   "engines": {
-    "vscode": "^1.42.0"
+    "vscode": "^1.55.0"
   },
   "repository": {
     "type": "git",
