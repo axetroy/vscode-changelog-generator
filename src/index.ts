@@ -64,22 +64,29 @@ export function activate(context: VSCODE.ExtensionContext) {
         location: vs.ProgressLocation.Notification,
         title: localize("info.generating")
       },
-      async () => {
-        const { all } = await execa(process.execPath, args, {
-          cwd,
-          all: true
-        });
+      async (progress, token) => {
+        try {
+          const { all } = await execa(process.execPath, args, {
+            cwd,
+            all: true
+          });
 
-        return all;
+          return all;
+        } catch (err) {
+          console.error(err)
+          throw err
+        }
       }
     );
 
-    const document = await vs.workspace.openTextDocument({
-      language: "markdown",
-      content: changelog
-    });
+    if (changelog) {
+      const document = await vs.workspace.openTextDocument({
+        language: "markdown",
+        content: changelog
+      });
 
-    vs.window.showTextDocument(document);
+      vs.window.showTextDocument(document);
+    }
   }
 
   context.subscriptions.push(
