@@ -68,13 +68,15 @@ export function activate(context: VSCODE.ExtensionContext) {
         try {
           const { all } = await execa(process.execPath, args, {
             cwd,
-            all: true
+            all: true,
+            preferLocal: true,
+            execPath: process.execPath
           });
 
           return all;
         } catch (err) {
           console.error(err)
-          throw err
+          throw new Error(err.message)
         }
       }
     );
