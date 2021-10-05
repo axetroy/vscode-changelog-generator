@@ -1,3 +1,5 @@
+> ⚠️ Deprecated and no longer maintained, please go to [vscode-whatchanged](https://github.com/release-lab/vscode-whatchanged)
+
 # Visual Studio Code extension to generate changelog
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/axetroy/vscode-changelog-generator/build)
